@@ -37,7 +37,13 @@ t_token	*lexer_collect_id(t_lexer *lexer)
 		value = temp;
 		lexer_advance(lexer);
 	}
-	return (init_token(TOKEN_ARG, value));
+	if (lexer->command_flag == 0)
+	{
+		lexer->command_flag = 1;
+		return (init_token(TOKEN_COMMAND, value));
+	}
+	else
+		return (init_token(TOKEN_ARG, value));
 }
 
 t_token	*lexer_collect_cmp(t_lexer *lexer, char c)
@@ -47,17 +53,38 @@ t_token	*lexer_collect_cmp(t_lexer *lexer, char c)
 	{
 		lexer_advance(lexer);
 		if (c == '<')
-			return (init_token(TOKEN_DL_THAN, ft_strdup("<<")));
+			return (init_token(TOKEN_HEREDOC, collect_string(lexer)));
 		else
-			return (init_token(TOKEN_DG_THAN, ft_strdup(">>")));
+			return (init_token(TOKEN_APPEND, collect_string(lexer)));
 	}
 	else
 	{
 		if (c == '<')
-			return (init_token(TOKEN_L_THAN, ft_strdup("<")));
+			return (init_token(TOKEN_REDIR, collect_string(lexer)));
 		else
-			return (init_token(TOKEN_G_THAN, ft_strdup(">")));
+			return (init_token(TOKEN_FILE, collect_string(lexer)));
 	}
+}
+
+char *collect_string(t_lexer *lexer)
+{
+	char	*value;
+	char	*temp;
+	char	*s;
+
+	lexer_advance(lexer);
+	value = ft_calloc(1, sizeof(char));
+	lexer_skip_whitespaces(lexer);
+	while (ft_isalnum(lexer->c))
+	{
+		s = lexer_get_current_char_as_string(lexer);
+		temp = ft_strjoin(value, s);
+		free(s);
+		free(value);
+		value = temp;
+		lexer_advance(lexer);
+	}
+	return(value);
 }
 
 t_token	*lexer_collect_string(t_lexer *lexer, char c)

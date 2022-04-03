@@ -6,13 +6,13 @@
 #    By: cjad <cjad@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/14 16:09:23 by cjad              #+#    #+#              #
-#    Updated: 2021/11/16 18:28:49 by cjad             ###   ########.fr        #
+#    Updated: 2022/03/31 19:17:11 by cjad             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
-CC = @gcc
+CC = @cc
 
 FLAGS = -Wall -Werror -Wextra -c
 

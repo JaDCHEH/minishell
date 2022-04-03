@@ -4,13 +4,12 @@ LIBFT = ./libft/libft.a
 
 CC = @cc
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -fsanitize=address
 
 RM = @rm -f
 
 C_FILES = 	include/lexer.c \
 			include/utils.c \
-
 
 N_FLAG = -o
 
@@ -29,14 +28,14 @@ $(NAME) : $(LIBFT) $(C_FILES)
 
 $(LIBFT) :
 	@make -C ./libft
-	@make clean -C ./libft
 
 clean :
-	@echo "$(C_RED)["libft.a" REMOVED]$(C_RES)"
-	@make fclean -C ./libft
+	@echo "$(C_L_BLUE)[OBJECTS REMOVED]$(C_RES)"
+	@make clean -C ./libft
 
 fclean : clean
 	@echo "$(C_RED)["minishell and libtf.a" REMOVED]$(C_RES)"
+	@make fclean -C ./libft
 	$(RM) $(NAME)
 
 re : fclean all
