@@ -10,6 +10,7 @@ RM = @rm -f
 
 C_FILES = 	include/lexer.c \
 			include/utils.c \
+			include/utils2.c \
 
 N_FLAG = -o
 

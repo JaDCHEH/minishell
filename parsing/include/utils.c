@@ -66,13 +66,12 @@ t_token	*lexer_collect_cmp(t_lexer *lexer, char c)
 	}
 }
 
-char *collect_string(t_lexer *lexer)
+char	*collect_string(t_lexer *lexer)
 {
 	char	*value;
 	char	*temp;
 	char	*s;
 
-	lexer_advance(lexer);
 	value = ft_calloc(1, sizeof(char));
 	lexer_skip_whitespaces(lexer);
 	while (ft_isalnum(lexer->c))
@@ -84,7 +83,7 @@ char *collect_string(t_lexer *lexer)
 		value = temp;
 		lexer_advance(lexer);
 	}
-	return(value);
+	return (value);
 }
 
 t_token	*lexer_collect_string(t_lexer *lexer, char c)
