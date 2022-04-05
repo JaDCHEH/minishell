@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lexer.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cjad <cjad@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/04 18:17:30 by cjad              #+#    #+#             */
+/*   Updated: 2022/04/05 21:33:19 by cjad             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef LEXER_H
 # define LEXER_H
 # include "../libft/libft.h"
@@ -45,8 +57,9 @@ t_token	*lexer_collect_flag(t_lexer *lexer);
 t_token	*lexer_collect_id(t_lexer *lexer);
 t_token	*lexer_collect_cmp(t_lexer *lexer, char c);
 t_token	*lexer_collect_string(t_lexer *lexer, char c);
-char	*collect_string(t_lexer *lexer);
 t_token	*lexer_advance_with_token(t_lexer *lexer, int type);
+char	*collect_string(t_lexer *lexer);
+char	*lexer_collect_dollar(t_lexer *lexer, int i);
 void	lexer_advance(t_lexer *lexer);
 void	lexer_skip_whitespaces(t_lexer	*lexer);
 char	*lexer_get_current_char_as_string(t_lexer *lexer);

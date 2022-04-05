@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cjad <cjad@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/04 18:17:35 by cjad              #+#    #+#             */
+/*   Updated: 2022/04/05 21:33:03 by cjad             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lexer.h"
 
 t_token	*lexer_collect_flag(t_lexer *lexer)
@@ -94,15 +106,19 @@ t_token	*lexer_collect_string(t_lexer *lexer, char c)
 
 	lexer_advance(lexer);
 	value = ft_calloc(1, sizeof(char));
-	while (lexer->c != c)
+	while (lexer->c != c && lexer->c != '\0')
 	{
-		s = lexer_get_current_char_as_string(lexer);
+		if (lexer->c == '$' && c == '"')
+			s = lexer_collect_dollar(lexer, 1);
+		else
+			s = lexer_get_current_char_as_string(lexer);
 		temp = ft_strjoin(value, s);
-		free(s);
+		//free(s);
 		free(value);
 		value = temp;
 		lexer_advance(lexer);
 	}
-	lexer_advance(lexer);
+	if (lexer->c == c)
+		lexer_advance(lexer);
 	return (init_token(TOKEN_ARG, value));
 }
