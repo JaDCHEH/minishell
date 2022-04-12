@@ -6,7 +6,7 @@
 /*   By: cjad <cjad@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:17:30 by cjad              #+#    #+#             */
-/*   Updated: 2022/04/05 21:33:19 by cjad             ###   ########.fr       */
+/*   Updated: 2022/04/12 17:49:03 by cjad             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ typedef struct s_token
 		TOKEN_EQUALS,
 		TOKEN_PIPE,
 	} e_type;
-	char	*value;
+	char			*value;
+	struct s_token	*next;
 }	t_token;
 
 typedef struct s_token_list
@@ -63,5 +64,6 @@ char	*lexer_collect_dollar(t_lexer *lexer, int i);
 void	lexer_advance(t_lexer *lexer);
 void	lexer_skip_whitespaces(t_lexer	*lexer);
 char	*lexer_get_current_char_as_string(t_lexer *lexer);
+int		ft_isnotspecial(char c);
 
 #endif

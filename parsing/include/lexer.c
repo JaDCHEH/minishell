@@ -6,7 +6,7 @@
 /*   By: cjad <cjad@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:17:14 by cjad              #+#    #+#             */
-/*   Updated: 2022/04/05 22:04:23 by cjad             ###   ########.fr       */
+/*   Updated: 2022/04/12 18:36:18 by cjad             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	lexer_skip_whitespaces(t_lexer	*lexer)
 {
-	while (lexer->c == ' ' || lexer->c == '\n')
+	while ((lexer->c >= '\t' && lexer->c <= '\r') || lexer->c == ' ')
 	{
 		lexer_advance(lexer);
 	}
@@ -24,15 +24,14 @@ t_token	*lexer_get_next_token(t_lexer *lexer)
 {
 	while (lexer->c != '\0' && lexer->i < ft_strlen(lexer->content))
 	{
-		if (lexer->c == ' ' || lexer->c == '\n')
-			lexer_skip_whitespaces(lexer);
+		lexer_skip_whitespaces(lexer);
 		if (lexer->c == '<')
 			return (lexer_collect_cmp(lexer, '<'));
 		if (lexer->c == '>')
 			return (lexer_collect_cmp(lexer, '>'));
 		if (lexer->c == '|')
 			return (lexer_advance_with_token(lexer, TOKEN_PIPE));
-		if (ft_isalnum(lexer->c))
+		if (ft_isnotspecial(lexer->c))
 			return (lexer_collect_id(lexer));
 		if (lexer->c == '-')
 			return (lexer_collect_flag(lexer));
@@ -57,19 +56,4 @@ char	*lexer_get_current_char_as_string(t_lexer *lexer)
 	if (lexer->c == '|')
 		lexer->command_flag = 0;
 	return (str);
-}
-
-int	main()
-{
-	t_lexer			*lexer;
-	t_token			*token;
-
-	lexer = init_lexer("$PATH=");
-	lexer->command_flag = 0;
-	token = lexer_get_next_token(lexer);
-	while (token != 0)
-	{
-		printf("TOKEN(%d, %s)\n", token->e_type, token->value);
-		token = (lexer_get_next_token(lexer));
-	}
 }

@@ -6,7 +6,7 @@
 /*   By: cjad <cjad@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 18:17:35 by cjad              #+#    #+#             */
-/*   Updated: 2022/04/05 21:33:03 by cjad             ###   ########.fr       */
+/*   Updated: 2022/04/10 21:27:58 by cjad             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_token	*lexer_collect_id(t_lexer *lexer)
 	char	*s;
 
 	value = ft_calloc(1, sizeof(char));
-	while (ft_isalnum(lexer->c))
+	while (ft_isnotspecial(lexer->c))
 	{
 		s = lexer_get_current_char_as_string(lexer);
 		temp = ft_strjoin(value, s);
@@ -69,13 +69,14 @@ t_token	*lexer_collect_cmp(t_lexer *lexer, char c)
 		else
 			return (init_token(TOKEN_APPEND, collect_string(lexer)));
 	}
-	else
+	else 
 	{
-		if (c == '<')
+		if (c == '<' && lexer->c != '>')
 			return (init_token(TOKEN_REDIR, collect_string(lexer)));
-		else
+		else if (c == '>' && lexer->c != '<')
 			return (init_token(TOKEN_FILE, collect_string(lexer)));
 	}
+	return (init_token(-1, NULL));
 }
 
 char	*collect_string(t_lexer *lexer)
@@ -86,9 +87,12 @@ char	*collect_string(t_lexer *lexer)
 
 	value = ft_calloc(1, sizeof(char));
 	lexer_skip_whitespaces(lexer);
-	while (ft_isalnum(lexer->c))
+	while (ft_isnotspecial(lexer->c) || lexer->c == '$')
 	{
-		s = lexer_get_current_char_as_string(lexer);
+		if (lexer->c == '$')
+			s = lexer_collect_dollar(lexer, 1);
+		else
+			s = lexer_get_current_char_as_string(lexer);
 		temp = ft_strjoin(value, s);
 		free(s);
 		free(value);
@@ -113,7 +117,7 @@ t_token	*lexer_collect_string(t_lexer *lexer, char c)
 		else
 			s = lexer_get_current_char_as_string(lexer);
 		temp = ft_strjoin(value, s);
-		//free(s);
+		free(s);
 		free(value);
 		value = temp;
 		lexer_advance(lexer);

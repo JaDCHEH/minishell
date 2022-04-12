@@ -6,7 +6,7 @@
 #    By: cjad <cjad@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/04 18:25:04 by cjad              #+#    #+#              #
-#    Updated: 2022/04/05 21:12:59 by cjad             ###   ########.fr        #
+#    Updated: 2022/04/12 19:54:05 by cjad             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,13 +16,15 @@ LIBFT = ./libft/libft.a
 
 CC = @cc
 
-FLAGS = -Wall -Wextra -Werror 
+FLAGS = -Wall -Wextra -Werror -fsanitize=address
 
 RM = @rm -f
 
 C_FILES = 	include/lexer.c \
 			include/utils.c \
 			include/utils2.c \
+			include/utils3.c \
+			include/parsing.c \
 
 N_FLAG = -o
 
