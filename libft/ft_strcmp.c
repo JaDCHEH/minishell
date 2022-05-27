@@ -1,39 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cjad <cjad@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/04 11:18:55 by cjad              #+#    #+#             */
-/*   Updated: 2021/11/12 11:39:26 by cjad             ###   ########.fr       */
+/*   Created: 2022/03/30 14:01:11 by ie-laabb          #+#    #+#             */
+/*   Updated: 2022/05/21 14:44:22 by cjad             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	ft_strcpy(char	*s1, const char	*s2)
+int	ft_strcmp(char *s01, char *s02)
 {
 	int	i;
 
 	i = 0;
-	while (s2[i] != '\0')
+	if (!s01 || !s02)
+		return (-1);
+	while (s01[i] && s02[i])
 	{
-		s1[i] = s2[i];
+		if (s01[i] != s02[i])
+			return (s01[i] - s02[i]);
 		i++;
 	}
-	s1[i] = '\0';
-}
-
-char	*ft_strdup(const char	*s1)
-{
-	int		i;
-	char	*scpy;
-
-	i = ft_strlen(s1);
-	scpy = (char *) malloc (sizeof (char) * (i + 1));
-	if (!scpy)
-		return (NULL);
-	ft_strcpy(scpy, s1);
-	return (scpy);
+	if ((s01[i] == '\0' && s02[i]) || (s01[i] && s02[i] == '\0'))
+		return (s01[i] - s02[i]);
+	return (0);
 }

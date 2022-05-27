@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjad <cjad@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ie-laabb <ie-laabb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 15:33:21 by cjad              #+#    #+#             */
-/*   Updated: 2021/11/16 14:53:23 by cjad             ###   ########.fr       */
+/*   Updated: 2022/05/16 11:26:02 by ie-laabb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	words_counter(const char	*s, char c)
 	return (j);
 }
 
-static char	*ft_strndup(const char	*s1, size_t	n)
+char	*ft_strndup(const char	*s1, size_t	n)
 {
 	size_t		i;
 	char		*scpy;
@@ -82,7 +82,7 @@ char	**ft_split(char const	*s, char c)
 	if (!s)
 		return (NULL);
 	count = words_counter(s, c);
-	strs = (char **) malloc (sizeof(char *) * count + 1);
+	strs = (char **) malloc (sizeof(char *) * (count + 1));
 	if (!strs)
 		return (NULL);
 	ft_fill_string(s, c, strs, count);

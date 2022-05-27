@@ -6,7 +6,7 @@
 #    By: cjad <cjad@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/14 16:09:23 by cjad              #+#    #+#              #
-#    Updated: 2022/03/31 19:17:11 by cjad             ###   ########.fr        #
+#    Updated: 2022/05/21 14:39:07 by cjad             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CC = @cc
 
 FLAGS = -Wall -Werror -Wextra -c
 
-AR = @ar r
+AR = @ar rc
 
 RM = @rm -f
 
@@ -25,6 +25,7 @@ FILES = ft_isalpha.c\
 		ft_isalnum.c\
 		ft_isascii.c\
 		ft_isprint.c\
+		ft_strcmp.c\
 		ft_strlen.c\
 		ft_memset.c\
 		ft_bzero.c\
@@ -83,6 +84,7 @@ OBJS = ft_isalpha.o\
 		ft_strtrim.o\
 		ft_split.o\
 		ft_itoa.o\
+		ft_strcmp.o\
 		ft_strmapi.o\
 		ft_striteri.o\
 		ft_putchar_fd.o\

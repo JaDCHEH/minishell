@@ -3,17 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjad <cjad@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ie-laabb <ie-laabb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 10:23:11 by cjad              #+#    #+#             */
-/*   Updated: 2021/11/11 12:28:48 by cjad             ###   ########.fr       */
+/*   Updated: 2022/05/24 14:45:48 by ie-laabb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isdigit(int c)
+int	ft_isdigit(char	*s)
 {
-	if (c <= 57 && c >= 48)
-		return (1);
-	else
+	int	i;
+
+	i = 0;
+	if (s[i])
+	{
+		while (s[i])
+		{
+			if (s[i] <= 57 && s[i] >= 48)
+				return (1);
+			i++;
+		}
 		return (0);
+	}
+	return (1);
 }
