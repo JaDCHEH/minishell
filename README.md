@@ -19,7 +19,7 @@ just run it with :
 ./minishell
 ```
 
-##Supported options
+## Supported options
 
 Minishell runs executables from an absolute, relative or environment PATH (`/bin/ls` or `ls`),
 
@@ -35,7 +35,7 @@ A few of the functions are "built-in", meaning we don't call the executable,
 
 we re-coded them directly. It's the case for `echo`, `pwd`, `cd`, `env`, `export`, `unset` and `exit`.
 
-##credit
+## credit
 
 This team project was done with [ie_laabb](https://github.com/elyass546)
 
