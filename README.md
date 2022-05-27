@@ -42,3 +42,4 @@ This team project was done with [ie_laabb](https://github.com/elyass546)
 I was responsible for the parsing, argument checking, execution, redirection and piping.
 
 ie_laabb took care of the environment variables, built-in functions, and signal handling.
+
