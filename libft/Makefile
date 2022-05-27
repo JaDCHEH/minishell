@@ -6,7 +6,7 @@
 #    By: cjad <cjad@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/14 16:09:23 by cjad              #+#    #+#              #
-#    Updated: 2022/05/21 14:39:07 by cjad             ###   ########.fr        #
+#    Updated: 2022/05/27 13:15:57 by cjad             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = libft.a
 
 CC = @cc
 
-FLAGS = -Wall -Werror -Wextra -c
+CFLAGS = -Wall -Werror -Wextra -c
 
 AR = @ar rc
 
@@ -95,7 +95,7 @@ OBJS = ft_isalpha.o\
 all : $(NAME)
 
 $(NAME) : $(OBJS)
-	$(CC) $(FLAGS) $(FILES)
+	$(CC) $(CFLAGS) $(FILES)
 	$(AR) $(NAME) $(OBJS)	
 
 clean :

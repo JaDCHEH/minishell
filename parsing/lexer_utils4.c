@@ -6,7 +6,7 @@
 /*   By: cjad <cjad@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 12:05:49 by ie-laabb          #+#    #+#             */
-/*   Updated: 2022/05/27 11:36:13 by cjad             ###   ########.fr       */
+/*   Updated: 2022/05/27 13:12:03 by cjad             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,12 @@ int	ft_strcmp_v2(t_lst *s1, char *s2)
 		return (0);
 	if (!s1 || !s2)
 		return (-1);
-	return (ft_strncmp(s1->content, s2, ft_strlen(s2)));
+	if (ft_strncmp(s1->content, s2, ft_strlen(s2)))
+		return (1);
+	while (s1->content[i] == s2[i]
+		&& s1->content[i + 1] != '=' && s2[i] != '\0')
+		i++;
+	return (s1->content[i] - s2[i]);
 }
 
 char	*get_env(char *var, t_lst *tmp)
