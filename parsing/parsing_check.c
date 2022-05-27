@@ -6,7 +6,7 @@
 /*   By: cjad <cjad@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 11:54:28 by cjad              #+#    #+#             */
-/*   Updated: 2022/05/27 11:24:13 by cjad             ###   ########.fr       */
+/*   Updated: 2022/05/27 13:51:47 by cjad             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,7 @@ int	check_pipes(char *str, int *i)
 
 	a = 0;
 	while ((str[a] >= '\t' && str[a] <= '\r') || str[a] == ' ')
-	{
 		a++;
-	}
 	if (str[a] == '|')
 	{
 		ft_putstr_fd("syntax error near unexpected token `|'\n", 2);
@@ -28,9 +26,11 @@ int	check_pipes(char *str, int *i)
 	}
 	if (str[*i] == '|')
 	{
-		if (str[*i] == '|' && str[*i + 1] == '|')
+		while ((str[*i] >= '\t' && str[*i] <= '\r') || str[*i] == ' ')
+			(*i)++;
+		if (str[*i] == '|' || str[*i] == '\0')
 		{
-			ft_putstr_fd("Multiple consecutive pipes \n", 2);
+			ft_putstr_fd("syntax error near unexpected token `|'\n", 2);
 			return (1);
 		}
 		i++;
